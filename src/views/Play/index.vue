@@ -134,7 +134,10 @@ export default {
     showLyric() {
       // 监听播放audio进度, 切换歌词显示
       this.$refs.audio.addEventListener('timeupdate', () => {
-        let curTime = Math.floor(this.$refs.audio.currentTime)
+        let curTime = 0
+        if (typeof(this.$refs.audio) != "undefined") {
+            curTime = Math.floor(this.$refs.audio.currentTime)
+        }
         // 避免空白出现
         if (this.lyric[curTime]) {
           this.curLyric = this.lyric[curTime]
@@ -149,7 +152,7 @@ export default {
     this.getSong()
     this.showLyric()
     console.log(this.$route.query.id);
-  }
+  },
 }
 </script>
 
